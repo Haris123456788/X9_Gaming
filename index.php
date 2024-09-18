@@ -244,103 +244,54 @@
         Meet Our Team
         ==================================== -->
 
-    <section id="team" class="team">
-        <div class="container">
-            <div class="row">
-
-                <div class="sec-title text-center wow fadeInUp animated" data-wow-duration="700ms">
-                    <h2>Meet Our Team</h2>
-                    <div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
-                </div>
-
-                <div class="sec-sub-title text-center wow fadeInRight animated" data-wow-duration="500ms">
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                        totam rem aperiam, eaque ipsa quae ab illo inventore</p>
-                </div>
-
-                <!-- single member -->
-                <figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated"
-                    data-wow-duration="500ms">
-                    <div class="member-thumb">
-                        <img src="img/team/member-1.png" alt="Team Member" class="img-responsive">
-                        <figcaption class="overlay">
-                            <h5>voluptatem quia voluptas </h5>
-                            <p>sit aspernatur aut odit aut fugit,</p>
-                            <ul class="social-links text-center">
-                                <li><a href=""><i class="fa fa-twitter fa-lg"></i></a></li>
-                                <li><a href=""><i class="fa fa-facebook fa-lg"></i></a></li>
-                                <li><a href=""><i class="fa fa-google-plus fa-lg"></i></a></li>
-                            </ul>
-                        </figcaption>
-                    </div>
-                    <h4>John Filmr Doe</h4>
-                    <span>Managing Director</span>
-                </figure>
-                <!-- end single member -->
-
-                <!-- single member -->
-                <figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated"
-                    data-wow-duration="500ms" data-wow-delay="300ms">
-                    <div class="member-thumb">
-                        <img src="img/team/member-2.png" alt="Team Member" class="img-responsive">
-                        <figcaption class="overlay">
-                            <h5>voluptatem quia voluptas </h5>
-                            <p>sit aspernatur aut odit aut fugit,</p>
-                            <ul class="social-links text-center">
-                                <li><a href=""><i class="fa fa-twitter fa-lg"></i></a></li>
-                                <li><a href=""><i class="fa fa-facebook fa-lg"></i></a></li>
-                                <li><a href=""><i class="fa fa-google-plus fa-lg"></i></a></li>
-                            </ul>
-                        </figcaption>
-                    </div>
-                    <h4>Martin Matrone</h4>
-                    <span>Lead Developer</span>
-                </figure>
-                <!-- end single member -->
-
-                <!-- single member -->
-                <figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated"
-                    data-wow-duration="500ms" data-wow-delay="600ms">
-                    <div class="member-thumb">
-                        <img src="img/team/member-3.png" alt="Team Member" class="img-responsive">
-                        <figcaption class="overlay">
-                            <h5>voluptatem quia voluptas </h5>
-                            <p>sit aspernatur aut odit aut fugit,</p>
-                            <ul class="social-links text-center">
-                                <li><a href=""><i class="fa fa-twitter fa-lg"></i></a></li>
-                                <li><a href=""><i class="fa fa-facebook fa-lg"></i></a></li>
-                                <li><a href=""><i class="fa fa-google-plus fa-lg"></i></a></li>
-                            </ul>
-                        </figcaption>
-                    </div>
-                    <h4>Steve Flaulkin</h4>
-                    <span>Sr. UI Designer</span>
-                </figure>
-                <!-- end single member -->
-
-                <!-- single member -->
-                <figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated"
-                    data-wow-duration="500ms" data-wow-delay="900ms">
-                    <div class="member-thumb">
-                        <img src="img/team/member-1.png" alt="Team Member" class="img-responsive">
-                        <figcaption class="overlay">
-                            <h5>voluptatem quia voluptas </h5>
-                            <p>sit aspernatur aut odit aut fugit,</p>
-                            <ul class="social-links text-center">
-                                <li><a href=""><i class="fa fa-twitter fa-lg"></i></a></li>
-                                <li><a href=""><i class="fa fa-facebook fa-lg"></i></a></li>
-                                <li><a href=""><i class="fa fa-google-plus fa-lg"></i></a></li>
-                            </ul>
-                        </figcaption>
-                    </div>
-                    <h4>John Filmr Doe</h4>
-                    <span>Managing Director</span>
-                </figure>
-                <!-- end single member -->
-
+        <section id="team" class="team">
+    <div class="container">
+        <div class="row">
+            <!-- Section Title -->
+            <div class="sec-title text-center wow fadeInUp animated" data-wow-duration="700ms">
+                <h2>Meet Our Team</h2>
+                <div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
             </div>
+
+            <div class="sec-sub-title text-center wow fadeInRight animated" data-wow-duration="500ms">
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                    totam rem aperiam, eaque ipsa quae ab illo inventore</p>
+            </div>
+
+            <!-- Fetch Team Members Dynamically -->
+            <?php
+            // Include the database connection
+            include('db.php');
+
+            // Query to fetch all team members from the `team` table
+            $sql = "SELECT * FROM team";
+            $result = $conn->query($sql);
+
+            // Loop through each team member and display them dynamically
+            while ($row = $result->fetch_assoc()) {
+            ?>
+            <!-- single member -->
+            <figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms">
+                <div class="member-thumb">
+                    <img src="img/team/<?php echo $row['team_img']; ?>" alt="<?php echo $row['name']; ?>" class="img-responsive">
+                    <figcaption class="overlay">
+                        <h5><?php echo $row['overlay_title']; ?></h5>
+                        <p><?php echo $row['overlay_description']; ?></p>
+                        <ul class="social-links text-center">
+                            <li><a href="<?php echo $row['twitter_link']; ?>"><i class="fa fa-twitter fa-lg"></i></a></li>
+                            <li><a href="<?php echo $row['facebook_link']; ?>"><i class="fa fa-facebook fa-lg"></i></a></li>
+                            <li><a href="<?php echo $row['google_plus_link']; ?>"><i class="fa fa-google-plus fa-lg"></i></a></li>
+                        </ul>
+                    </figcaption>
+                </div>
+                <h4><?php echo $row['name']; ?></h4>
+                <span><?php echo $row['position']; ?></span>
+            </figure>
+            <!-- end single member -->
+            <?php } ?>
         </div>
-    </section>
+    </div>
+</section>
 
     <!--
         End Meet Our Team
@@ -350,59 +301,43 @@
         Some fun facts
         ==================================== -->
 
-    <section id="facts" class="facts">
-        <div class="parallax-overlay">
-            <div class="container">
-                <div class="row number-counters">
-
-                    <div class="sec-title text-center mb50 wow rubberBand animated" data-wow-duration="1000ms">
-                        <h2>Some Fun Facts</h2>
-                        <div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
-                    </div>
-
-                    <!-- first count item -->
-                    <div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated"
-                        data-wow-duration="500ms">
-                        <div class="counters-item">
-                            <i class="fa fa-clock-o fa-3x"></i>
-                            <strong data-to="3200">0</strong>
-                            <!-- Set Your Number here. i,e. data-to="56" -->
-                            <p>Hours of Work</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms"
-                        data-wow-delay="300ms">
-                        <div class="counters-item">
-                            <i class="fa fa-users fa-3x"></i>
-                            <strong data-to="120">0</strong>
-                            <!-- Set Your Number here. i,e. data-to="56" -->
-                            <p>Satisfied Clients</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms"
-                        data-wow-delay="600ms">
-                        <div class="counters-item">
-                            <i class="fa fa-rocket fa-3x"></i>
-                            <strong data-to="360">0</strong>
-                            <!-- Set Your Number here. i,e. data-to="56" -->
-                            <p> Projects Delivered </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms"
-                        data-wow-delay="900ms">
-                        <div class="counters-item">
-                            <i class="fa fa-trophy fa-3x"></i>
-                            <strong data-to="6454">0</strong>
-                            <!-- Set Your Number here. i,e. data-to="56" -->
-                            <p>Awards Won</p>
-                        </div>
-                    </div>
-                    <!-- end first count item -->
-
+        <section id="facts" class="facts">
+    <div class="parallax-overlay">
+        <div class="container">
+            <div class="row number-counters">
+                <!-- Section Title -->
+                <div class="sec-title text-center mb50 wow rubberBand animated" data-wow-duration="1000ms">
+                    <h2>Some Fun Facts</h2>
+                    <div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
                 </div>
+
+                <!-- Fetch Fun Facts Dynamically -->
+                <?php
+                // Include the database connection
+                include('db.php');
+
+                // Query to fetch all fun facts from the `facts` table
+                $sql = "SELECT * FROM facts";
+                $result = $conn->query($sql);
+
+                // Loop through each fact and display it dynamically
+                while ($row = $result->fetch_assoc()) {
+                ?>
+                <!-- single fact item -->
+                <div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="<?php echo $row['delay']; ?>">
+                    <div class="counters-item">
+                        <i class="fa <?php echo $row['icon']; ?> fa-3x"></i>
+                        <strong data-to="<?php echo $row['number']; ?>">0</strong>
+                        <p><?php echo $row['label']; ?></p>
+                    </div>
+                </div>
+                <!-- end single fact item -->
+                <?php } ?>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!--
         End Some fun facts
