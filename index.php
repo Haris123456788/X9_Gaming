@@ -133,66 +133,45 @@
         Features
         ==================================== -->
 
-    <section id="features" class="features">
-        <div class="container">
-            <div class="row">
+        <section id="features" class="features">
+    <div class="container">
+        <div class="row">
 
-                <div class="sec-title text-center mb50 wow bounceInDown animated" data-wow-duration="500ms">
-                    <h2>Features</h2>
-                    <div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
-                </div>
-
-                <!-- service item -->
-                <div class="col-md-4 wow fadeInLeft" data-wow-duration="500ms">
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <i class="fa fa-github fa-2x"></i>
-                        </div>
-
-                        <div class="service-desc">
-                            <h3>Branding</h3>
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                                laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- end service item -->
-
-                <!-- service item -->
-                <div class="col-md-4 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="500ms">
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <i class="fa fa-pencil fa-2x"></i>
-                        </div>
-
-                        <div class="service-desc">
-                            <h3>Development</h3>
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                                laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- end service item -->
-
-                <!-- service item -->
-                <div class="col-md-4 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="900ms">
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <i class="fa fa-bullhorn fa-2x"></i>
-                        </div>
-
-                        <div class="service-desc">
-                            <h3>Consulting</h3>
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                                laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- end service item -->
-
+            <div class="sec-title text-center mb50 wow bounceInDown animated" data-wow-duration="500ms">
+                <h2>Features</h2>
+                <div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
             </div>
+
+            <?php
+            include('db.php');
+            $sql = "SELECT * FROM `features`";
+            $result = $conn->query($sql);
+
+            // Start loop
+            while ($row = $result->fetch_assoc()) { 
+            ?>
+            <!-- service item -->
+            <div class="col-md-4 wow fadeInLeft" data-wow-duration="500ms">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="<?php echo $row['icon_class']; ?>"></i>
+                    </div>
+
+                    <div class="service-desc">
+                        <h3><?php echo $row['name']; ?></h3>
+                        <p><?php echo $row['description']; ?></p>
+                    </div>
+                </div>
+            </div>
+            <!-- End service item -->
+
+            <?php 
+            } // End of while loop 
+            ?>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <!--
         End Features
