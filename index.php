@@ -191,18 +191,11 @@
                 <div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
             </div>
 
-            <?php
-                include('db.php');
-                $sql = "SELECT * FROM `works`";
-                $result = $conn->query($sql);
-            ?>
-
             <div class="sec-sub-title text-center">
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
                     totam rem aperiam, eaque ipsa quae ab illo inventore</p>
             </div>
 
-            <!-- Work filter -->
             <div class="work-filter wow fadeInRight animated" data-wow-duration="500ms">
                 <ul class="text-center">
                     <li><a href="javascript:;" data-filter="all" class="active filter">All</a></li>
@@ -212,27 +205,35 @@
                     <li><a href="javascript:;" data-filter=".photography" class="filter">Photography</a></li>
                 </ul>
             </div>
-            <!-- End work filter -->
-
-            <!-- Project wrapper -->
-            <div class="project-wrapper">
-                <?php while ($row = $result->fetch_assoc()) { ?>
-                    <figure class="mix work-item <?php echo $row['category']; ?>">
-                        <img src="img/works/<?php echo $row['works_img']; ?>" alt="">
-                        <figcaption class="overlay">
-                            <a class="fancybox" rel="works" title="<?php echo $row['caption']; ?>" href="img/works/<?php echo $row['works_img']; ?>"><i
-                                    class="fa fa-eye fa-lg"></i></a>
-                            <h4><?php echo $row['overlay_title']; ?></h4>
-                            <p><?php echo $row['category']; ?></p>
-                        </figcaption>
-                    </figure>
-                <?php } ?>
-            </div>
-            <!-- End project wrapper -->
 
         </div>
     </div>
+
+    <div class="project-wrapper">
+
+        <?php
+        include('db.php');
+        $sql = "SELECT * FROM `works`";
+        $result = $conn->query($sql);
+
+        while ($row = $result->fetch_assoc()) {
+            // Assuming $row['category'], $row['image'], $row['title'], and $row['caption'] contain the respective data
+            ?>
+            <figure class="mix work-item <?php echo $row['category']; ?>">
+                <img src="img/works/<?php echo $row['works_img']; ?>" alt="<?php echo $row['overlay_title']; ?>">
+                <figcaption class="overlay">
+                    <a class="fancybox" rel="works" title="<?php echo $row['caption']; ?>" href="img/works/<?php echo $row['works_img']; ?>">
+                        <i class="fa fa-eye fa-lg"></i>
+                    </a>
+                    <h4><?php echo $row['overlay_title']; ?></h4>
+                    <p><?php echo $row['category']; ?></p>
+                </figcaption>
+            </figure>
+        <?php } ?>
+
+    </div>
 </section>
+
 
 
     <!--
