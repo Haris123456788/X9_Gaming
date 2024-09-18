@@ -68,65 +68,62 @@
     <!--
         Home Slider
         ==================================== -->
+<section id="slider">
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    
+    <!-- Indicators bullet -->
+    <ol class="carousel-indicators">
+      <?php
+        include('db.php');
+        $sql= "SELECT * FROM `slider`";
+        $result= $conn->query($sql);
+        $totalSlides = $result->num_rows;
+        $counter = 0;
 
-    <section id="slider">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        // Generate indicators dynamically
+        while ($counter < $totalSlides) {
+          echo '<li data-target="#carousel-example-generic" data-slide-to="' . $counter . '" class="' . ($counter === 0 ? 'active' : '') . '"></li>';
+          $counter++;
+        }
+      ?>
+    </ol>
+    <!-- End Indicators bullet -->
 
-            <!-- Indicators bullet -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            </ol>
-            <!-- End Indicators bullet -->
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <?php
+        $result= $conn->query($sql);
+        $counter = 0;
+        while($row=$result->fetch_assoc()){?>
+        
+        <!-- single slide -->
+        <div class="item <?php echo ($counter === 0 ? 'active' : '') ?>" style="background-image: url(img/<?php echo $row['banner_img']?>);">
+          <div class="carousel-caption">
+            <h2 data-wow-duration="700ms" data-wow-delay="500ms" class="wow bounceInDown animated">
+              <?php echo $row['name_short']?> 
+            </h2>
+            <h3 data-wow-duration="1000ms" class="wow slideInLeft animated"><span class="color"><?php echo $row['name_long']?></h3>
+            <p data-wow-duration="1000ms" class="wow slideInRight animated">
+              <?php echo $row['description']?>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-
-                <!-- single slide -->
-                <div class="item active" style="background-image: url(img/banner.jpg);">
-                    <div class="carousel-caption">
-                        <h2 data-wow-duration="700ms" data-wow-delay="500ms" class="wow bounceInDown animated">
-                            Meet<span> Brandi</span>!</h2>
-                        <h3 data-wow-duration="1000ms" class="wow slideInLeft animated"><span
-                                class="color">/creative</span> one page template.</h3>
-                        <p data-wow-duration="1000ms" class="wow slideInRight animated">We are a team of professionals
-                        </p>
-
-                        <ul class="social-links text-center">
-                            <li><a href=""><i class="fa fa-twitter fa-lg"></i></a></li>
-                            <li><a href=""><i class="fa fa-facebook fa-lg"></i></a></li>
-                            <li><a href=""><i class="fa fa-google-plus fa-lg"></i></a></li>
-                            <li><a href=""><i class="fa fa-dribbble fa-lg"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- end single slide -->
-
-                <!-- single slide -->
-                <div class="item" style="background-image: url(img/banner.jpg);">
-                    <div class="carousel-caption">
-                        <h2 data-wow-duration="500ms" data-wow-delay="500ms" class="wow bounceInDown animated">
-                            Meet<span> Team</span>!</h2>
-                        <h3 data-wow-duration="500ms" class="wow slideInLeft animated"><span
-                                class="color">/creative</span> one page template.</h3>
-                        <p data-wow-duration="500ms" class="wow slideInRight animated">We are a team of professionals
-                        </p>
-
-                        <ul class="social-links text-center">
-                            <li><a href=""><i class="fa fa-twitter fa-lg"></i></a></li>
-                            <li><a href=""><i class="fa fa-facebook fa-lg"></i></a></li>
-                            <li><a href=""><i class="fa fa-google-plus fa-lg"></i></a></li>
-                            <li><a href=""><i class="fa fa-dribbble fa-lg"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- end single slide -->
-
-            </div>
-            <!-- End Wrapper for slides -->
-
+            </p>
+            <?php if ($counter === 0) { ?>
+            <ul class="social-links text-center">
+              <li><a href=""><i class="fa fa-twitter fa-lg"></i></a></li>
+              <li><a href=""><i class="fa fa-facebook fa-lg"></i></a></li>
+              <li><a href=""><i class="fa fa-google-plus fa-lg"></i></a></li>
+              <li><a href=""><i class="fa fa-dribbble fa-lg"></i></a></li>
+            </ul>
+            <?php } ?>
+          </div>
         </div>
-    </section>
+        <!-- end single slide -->
+        <?php $counter++; } ?>
+    </div>
+    <!-- End Wrapper for slides -->
+
+  </div>
+</section>
 
     <!--
         End Home SliderEnd
