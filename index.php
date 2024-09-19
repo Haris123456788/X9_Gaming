@@ -39,6 +39,12 @@
     <link rel="stylesheet" href="css/main.css">
     <!-- media-queries -->
     <link rel="stylesheet" href="css/media-queries.css">
+    <!-- Toastr CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+
+<!-- SweetAlert2 CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"/>
+
 
     <!-- Modernizer Script for old Browsers -->
     <script src="js/modernizr-2.6.2.min.js"></script>
@@ -378,24 +384,24 @@
                     data-wow-delay="300ms">
                     <div class="contact-form">
                         <h3>Say hello!</h3>
-                        <form action="#" id="contact-form">
-                            <div class="input-group name-email">
-                                <div class="input-field">
-                                    <input type="text" name="name" id="name" placeholder="Name" class="form-control">
-                                </div>
-                                <div class="input-field">
-                                    <input type="email" name="email" id="email" placeholder="Email"
-                                        class="form-control">
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                <textarea name="message" id="message" placeholder="Message"
-                                    class="form-control"></textarea>
-                            </div>
-                            <div class="input-group">
-                                <input type="submit" id="form-submit" class="pull-right" value="Send message">
-                            </div>
-                        </form>
+
+                       <form action="send.php" id="contact-form" method="POST">
+    <div class="input-group name-email">
+        <div class="input-field">
+            <input type="text" name="name" id="name" placeholder="Name" class="form-control" required>
+        </div>
+        <div class="input-field">
+            <input type="email" name="email" id="email" placeholder="Email" class="form-control" required>
+        </div>
+    </div>
+    <div class="input-group">
+        <textarea name="message" id="message" placeholder="Message" class="form-control" required></textarea>
+    </div>
+    <div class="input-group">
+        <input type="submit" id="form-submit" class="pull-right" name="send" value="Send message">
+    </div>
+</form>
+
                     </div>
                 </div>
                 <!-- end contact form -->
@@ -457,6 +463,9 @@
     <script src="js/jquery.easing.min.js"></script>
     <!-- jquery easing -->
     <script src="js/wow.min.js"></script>
+    <!-- SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
     <script>
         var wow = new WOW({
             boxClass: 'wow',      // animated element css class (default is wow)
@@ -470,63 +479,68 @@
     </script>
     <!-- Custom Functions -->
     <script src="js/custom.js"></script>
-
-    <script type="text/javascript">
-        $(function () {
-            /* ========================================================================= */
-            /*	Contact Form
-            /* ========================================================================= */
-
-            $('#contact-form').validate({
-                rules: {
-                    name: {
-                        required: true,
-                        minlength: 2
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    message: {
-                        required: true
-                    }
+<script type="text/javascript">
+$(function () {
+    $('#contact-form').validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 2
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            message: {
+                required: true
+            }
+        },
+        messages: {
+            name: {
+                required: "Please enter your name.",
+                minlength: "Your name must consist of at least 2 characters."
+            },
+            email: {
+                required: "Please enter a valid email."
+            },
+            message: {
+                required: "Please write a message."
+            }
+        },
+        submitHandler: function (form) {
+            // Display "Sending..." message
+            $('#form-submit').val('Sending...').attr('disabled', 'disabled');
+            $.ajax({
+                type: "POST",
+                url: "send.php",
+                data: $(form).serialize(),
+                success: function (response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Message sent!',
+                        text: 'Your message has been sent successfully.'
+                    }).then((result) => {
+                        // Reset form submit button after SweetAlert2 message is closed
+                        $('#form-submit').val('Send message').removeAttr('disabled');
+                    });
                 },
-                messages: {
-                    name: {
-                        required: "come on, you have a name don't you?",
-                        minlength: "your name must consist of at least 2 characters"
-                    },
-                    email: {
-                        required: "no email, no message"
-                    },
-                    message: {
-                        required: "um...yea, you have to write something to send this form.",
-                        minlength: "thats all? really?"
-                    }
-                },
-                submitHandler: function (form) {
-                    $(form).ajaxSubmit({
-                        type: "POST",
-                        data: $(form).serialize(),
-                        url: "process.php",
-                        success: function () {
-                            $('#contact-form :input').attr('disabled', 'disabled');
-                            $('#contact-form').fadeTo("slow", 0.15, function () {
-                                $(this).find(':input').attr('disabled', 'disabled');
-                                $(this).find('label').css('cursor', 'default');
-                                $('#success').fadeIn();
-                            });
-                        },
-                        error: function () {
-                            $('#contact-form').fadeTo("slow", 0.15, function () {
-                                $('#error').fadeIn();
-                            });
-                        }
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'There was an error sending your message.'
+                    }).then((result) => {
+                        // Reset form submit button after SweetAlert2 message is closed
+                        $('#form-submit').val('Send message').removeAttr('disabled');
                     });
                 }
             });
-        });
-    </script>
+        }
+    });
+});
+</script>
+
+
 </body>
 
 </html>
