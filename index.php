@@ -246,53 +246,9 @@
         Meet Our Team
         ==================================== -->
 
-        <section id="team" class="team">
-    <div class="container">
-        <div class="row">
-            <!-- Section Title -->
-            <div class="sec-title text-center wow fadeInUp animated" data-wow-duration="700ms">
-                <h2>Meet Our Team</h2>
-                <div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
-            </div>
-
-            <div class="sec-sub-title text-center wow fadeInRight animated" data-wow-duration="500ms">
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                    totam rem aperiam, eaque ipsa quae ab illo inventore</p>
-            </div>
-
-            <!-- Fetch Team Members Dynamically -->
-            <?php
-            // Include the database connection
-            include('db.php');
-
-            // Query to fetch all team members from the `team` table
-            $sql = "SELECT * FROM team";
-            $result = $conn->query($sql);
-
-            // Loop through each team member and display them dynamically
-            while ($row = $result->fetch_assoc()) {
-            ?>
-            <!-- single member -->
-            <figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms">
-                <div class="member-thumb">
-                    <img src="img/team/<?php echo $row['team_img']; ?>" alt="<?php echo $row['name']; ?>" class="img-responsive">
-                    <figcaption class="overlay">
-                        <h5><?php echo $row['overlay_title']; ?></h5>
-                        <p><?php echo $row['overlay_description']; ?></p>
-                        <ul class="social-links text-center">
-                            <li><a href="<?php echo $row['twitter_link']; ?>"><i class="fa fa-twitter fa-lg"></i></a></li>
-                            <li><a href="<?php echo $row['facebook_link']; ?>"><i class="fa fa-facebook fa-lg"></i></a></li>
-                            <li><a href="<?php echo $row['google_plus_link']; ?>"><i class="fa fa-google-plus fa-lg"></i></a></li>
-                        </ul>
-                    </figcaption>
-                </div>
-                <h4><?php echo $row['name']; ?></h4>
-                <span><?php echo $row['position']; ?></span>
-            </figure>
-            <!-- end single member -->
-            <?php } ?>
-        </div>
-    </div>
+        <section>
+        <script src="https://static.elfsight.com/platform/platform.js" async></script>
+        <div class="elfsight-app-2e9119b8-b913-4729-8a0a-df344ac6bb5c" data-elfsight-app-lazy></div>
 </section>
 
     <!--
