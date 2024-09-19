@@ -53,8 +53,7 @@ if (isset($_POST['send'])) {
                     <div class='content'>
                         <p><strong>Sender Name:</strong> $name</p>
                         <p><strong>Sender Email:</strong> $email</p>
-                        <p><strong>Message:</strong></p>
-                        <p>$message</p>
+                        <p><strong>Message:</strong> $message</p>
                     </div>
                     
                 </div>
