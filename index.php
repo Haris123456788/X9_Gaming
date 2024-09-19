@@ -39,11 +39,7 @@
     <link rel="stylesheet" href="css/main.css">
     <!-- media-queries -->
     <link rel="stylesheet" href="css/media-queries.css">
-    <!-- Toastr CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
-
-<!-- SweetAlert2 CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"/>
+   
 
 
     <!-- Modernizer Script for old Browsers -->
@@ -379,45 +375,13 @@
                 </div>
                 <!-- end contact address -->
 
-                <!-- contact form -->
-                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 wow fadeInDown animated" data-wow-duration="500ms"
-                    data-wow-delay="300ms">
-                    <div class="contact-form">
-                        <h3>Say hello!</h3>
-
-                       <form action="send.php" id="contact-form" method="POST">
-    <div class="input-group name-email">
-        <div class="input-field">
-            <input type="text" name="name" id="name" placeholder="Name" class="form-control" required>
-        </div>
-        <div class="input-field">
-            <input type="email" name="email" id="email" placeholder="Email" class="form-control" required>
-        </div>
-    </div>
-    <div class="input-group">
-        <textarea name="message" id="message" placeholder="Message" class="form-control" required></textarea>
-    </div>
-    <div class="input-group">
-        <input type="submit" id="form-submit" class="pull-right" name="send" value="Send message">
-    </div>
-</form>
+             
 
                     </div>
                 </div>
                 <!-- end contact form -->
 
-                <!-- footer social links -->
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 wow fadeInRight animated" data-wow-duration="500ms"
-                    data-wow-delay="600ms">
-                    <ul class="footer-social">
-                        <li><a href="https://www.behance.net/Themefisher"><i class="fa fa-behance fa-2x"></i></a></li>
-                        <li><a href="https://www.twitter.com/Themefisher"><i class="fa fa-twitter fa-2x"></i></a></li>
-                        <li><a href="https://dribbble.com/themefisher"><i class="fa fa-dribbble fa-2x"></i></a></li>
-                        <li><a href="https://www.facebook.com/Themefisher"><i class="fa fa-facebook fa-2x"></i></a></li>
-                    </ul>
-                </div>
-                <!-- end footer social links -->
-
+               
             </div>
         </div>
 
@@ -454,17 +418,12 @@
     <script src="js/jquery-countTo.js"></script>
     <!-- jquery.appear -->
     <script src="js/jquery.appear.js"></script>
-    <!-- Contact form validation -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
     <!-- Google Map -->
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <!-- jquery easing -->
     <script src="js/jquery.easing.min.js"></script>
     <!-- jquery easing -->
     <script src="js/wow.min.js"></script>
-    <!-- SweetAlert2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
     <script>
         var wow = new WOW({
@@ -479,66 +438,7 @@
     </script>
     <!-- Custom Functions -->
     <script src="js/custom.js"></script>
-<script type="text/javascript">
-$(function () {
-    $('#contact-form').validate({
-        rules: {
-            name: {
-                required: true,
-                minlength: 2
-            },
-            email: {
-                required: true,
-                email: true
-            },
-            message: {
-                required: true
-            }
-        },
-        messages: {
-            name: {
-                required: "Please enter your name.",
-                minlength: "Your name must consist of at least 2 characters."
-            },
-            email: {
-                required: "Please enter a valid email."
-            },
-            message: {
-                required: "Please write a message."
-            }
-        },
-        submitHandler: function (form) {
-            // Display "Sending..." message
-            $('#form-submit').val('Sending...').attr('disabled', 'disabled');
-            $.ajax({
-                type: "POST",
-                url: "send.php",
-                data: $(form).serialize(),
-                success: function (response) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Message sent!',
-                        text: 'Your message has been sent successfully.'
-                    }).then((result) => {
-                        // Reset form submit button after SweetAlert2 message is closed
-                        $('#form-submit').val('Send message').removeAttr('disabled');
-                    });
-                },
-                error: function () {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'There was an error sending your message.'
-                    }).then((result) => {
-                        // Reset form submit button after SweetAlert2 message is closed
-                        $('#form-submit').val('Send message').removeAttr('disabled');
-                    });
-                }
-            });
-        }
-    });
-});
-</script>
+
 
 
 </body>
