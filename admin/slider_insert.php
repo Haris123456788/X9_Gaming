@@ -277,6 +277,7 @@ include('includes/sidebar.php');
 include('includes/scripts.php');
 include('includes/footer.php');
 ?>
+
 <!-- Show SweetAlert on Form Submission -->
 <?php if (isset($_SESSION['message'])) : ?>
 <script>
@@ -287,5 +288,7 @@ include('includes/footer.php');
     });
 </script>
 <?php unset($_SESSION['message']); endif; ?>
+
+
 
    
