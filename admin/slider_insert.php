@@ -1,5 +1,8 @@
 <?php
 include('db.php');
+session_start();
+
+// Check if the form has been submitted
 if (isset($_POST['submit'])) {
     $name_short = $_POST['name_short'];
     $name_long = $_POST['name_long'];
@@ -14,10 +17,16 @@ if (isset($_POST['submit'])) {
     $query = mysqli_query($conn, $sql);
 
     if ($query) {
-        echo "<script>alert('Banner created successfully');</script>";  
+        // Set success message in session
+        $_SESSION['message'] = "Banner created successfully";
     } else {
-        echo "<script>alert('Failed to create banner');</script>";  
+        // Set error message in session
+        $_SESSION['message'] = "Failed to create banner";
     }
+
+    // Redirect to avoid resubmission on refresh
+    header('Location: ' . $_SERVER['PHP_SELF']);
+    exit();
 }
 include('includes/header.php');
 include('includes/sidebar.php');
@@ -232,7 +241,7 @@ include('includes/sidebar.php');
 <!-- End of Topbar -->
     <div class="container">
         <div class="form-container">
-            <h2 class="form-title">Register Here</h2>
+            <h2 class="form-title">Slider Details</h2>
             <form method="POST" style=" padding: 30px;">
                 <!-- Name Short  Field -->
                 <div class="form-group">
@@ -249,7 +258,7 @@ include('includes/sidebar.php');
                 <!-- Descriptiion Field -->
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <input type="text" class="form-control" id="description" name="description" placeholder="Enter your email">
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Enter your Description">
                 </div>
                 <!-- Banner Image -->
                 <div class="form-group">
@@ -267,7 +276,16 @@ include('includes/sidebar.php');
     <?php
 include('includes/scripts.php');
 include('includes/footer.php');
-
 ?>
+<!-- Show SweetAlert on Form Submission -->
+<?php if (isset($_SESSION['message'])) : ?>
+<script>
+    swal({
+        title: "<?= $_SESSION['message']; ?>",
+        icon: "<?= ($_SESSION['message'] === 'Banner created successfully') ? 'success' : 'error'; ?>",
+        button: "OK",
+    });
+</script>
+<?php unset($_SESSION['message']); endif; ?>
 
    
