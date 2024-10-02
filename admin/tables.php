@@ -1,4 +1,7 @@
 <?php
+include('db.php');
+$query="SELECT * FROM `slider`";
+$result=mysqli_query($conn,$query); 
 include('includes/header.php');
 include('includes/sidebar.php');
 ?>
@@ -223,32 +226,45 @@ include('includes/sidebar.php');
                             <h6 class="m-0 font-weight-bold text-primary">Slider Table</h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Name Short</th>
-                                            <th>Name Long</th>
-                                            <th>Description</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                        <th>Name Short</th>
-                                            <th>Name Long</th>
-                                            <th>Description</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                        </tr>
-                                    
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Sr. No</th>
+                <th>Name Short</th>
+                <th>Name Long</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Sr. No</th>
+                <th>Name Short</th>
+                <th>Name Long</th>
+                <th>Description</th>
+            </tr>
+        </tfoot>
+        <tbody>
+        <?php
+        if(mysqli_num_rows($result) > 0) {
+            $sn = 1;
+            while($data = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $sn . "</td>";
+                echo "<td>" . $data['name_short'] . "</td>";
+                echo "<td>" . $data['name_long'] . "</td>";
+                echo "<td>" . $data['description'] . "</td>";
+                echo "</tr>";
+                $sn++;
+            }
+        } else {
+            echo "<tr><td colspan='4'>No matching records found</td></tr>";
+        }
+        ?>
+        </tbody>
+    </table>
+</div>
+
                         </div>
                     </div>
 
@@ -267,4 +283,3 @@ include('includes/sidebar.php');
 include('includes/scripts.php');
 include('includes/footer.php');
 ?>
-    
