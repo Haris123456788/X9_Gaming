@@ -1470,7 +1470,7 @@ pre code {
 }
 .table-bordered thead td,
 .table-bordered thead th {
-  border-bottom-width: 2px;
+  border-bottom-width: 0px;
 }
 .table-borderless tbody + tbody,
 .table-borderless td,
@@ -9044,6 +9044,7 @@ a:focus {
   color: #fff;
   background: rgba(90, 92, 105, 0.5);
   line-height: 46px;
+  z-index: 9999;
 }
 .scroll-to-top:focus,
 .scroll-to-top:hover {
@@ -10060,6 +10061,23 @@ form.user .btn-user {
   background-color: #0056b3;
   color: #fff;
 }
+
+        /* Optional custom styling */
+        .table-custom {
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          border-radius: 10px;
+          overflow: hidden;
+      }
+      .table thead th {
+          background-color: #007bff;
+          color: white;
+      }
+      .table tbody tr:hover {
+          background-color: #f1f1f1;
+      }
+      .table tbody td {
+          vertical-align: middle;
+      }
 
 
 
