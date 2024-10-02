@@ -1461,9 +1461,7 @@ pre code {
 .table-sm th {
   padding: 0.3rem;
 }
-.table-bordered {
-  border: 1px solid #e3e6f0;
-}
+
 .table-bordered td,
 .table-bordered th {
   border: 1px solid #e3e6f0;
@@ -1661,7 +1659,7 @@ pre code {
   border-color: #6c6e7e;
 }
 .table-dark.table-bordered {
-  border: 0;
+  border: 1px;
 }
 .table-dark.table-striped tbody tr:nth-of-type(odd) {
   background-color: rgba(255, 255, 255, 0.05);
@@ -2236,7 +2234,7 @@ fieldset:disabled a.btn {
 }
 .btn-primary {
   color: #fff;
-  background-color: #4e73df;
+  background-color:#007bff;
   border-color: #4e73df;
 }
 .btn-primary:hover {
@@ -8987,7 +8985,7 @@ a.text-dark:hover {
   }
   .table-bordered td,
   .table-bordered th {
-    border: 1px solid #dddfeb !important;
+    border:1px solid #e3e6f0 !important;
   }
   .table-dark {
     color: inherit;

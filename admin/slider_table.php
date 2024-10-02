@@ -1,4 +1,7 @@
 <?php
+include('db.php');
+$query="SELECT * FROM `slider`";
+$result=mysqli_query($conn,$query); 
 include('includes/header.php');
 include('includes/sidebar.php');
 ?>
@@ -211,58 +214,79 @@ include('includes/sidebar.php');
 </nav>
 <!-- End of Topbar -->
 
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
 
-<div class="container mt-5">
-    <h2 class="mb-4 text-center">Slider Table (Edit,Delete)</h2>
-    
-    <div class="table-responsive">
-        <table class="table table-striped table-hover table-bordered table-custom">
-            <thead class="thead-dark">
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>John Doe</td>
-                    <td>johndoe@example.com</td>
-                    <td>Admin</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Jane Smith</td>
-                    <td>janesmith@example.com</td>
-                    <td>Editor</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Michael Johnson</td>
-                    <td>michaelj@example.com</td>
-                    <td>Subscriber</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Slider Table</h1>
+                    <p class="mb-4">Slider Data Tables where you can  &nbsp;<span class=" font-weight-bold text-primary">Edit</span> , <span class=" font-weight-bold text-primary">Upadte</span> , <span class=" font-weight-bold text-danger">Delete</span> &nbsp; your data.
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Slider Table</h6>
+                        </div>
+                        <div class="card-body">
+                        <div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Sr. No</th>
+                <th>Name Short</th>
+                <th>Name Long</th>
+                <th>Description</th>
+                <th>Edit</th>
+                <th>Delete</th>
+
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Sr. No</th>
+                <th>Name Short</th>
+                <th>Name Long</th>
+                <th>Description</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </tfoot>
+        <tbody>
+        <?php
+        if(mysqli_num_rows($result) > 0) {
+            $sn = 1;
+            while($data = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $sn . "</td>";
+                echo "<td>" . $data['name_short'] . "</td>";
+                echo "<td>" . $data['name_long'] . "</td>";
+                echo "<td>" . $data['description'] . "</td>";
+                echo "<td><a href='edit.php'><button type='submit' name='submit' class='btn btn-primary'>Edit</button></a></td>";
+                echo "<td><a href='delete.php'><button type='submit' name='submit' class='btn btn-danger'>Delete</button></a></td>";
+                echo "</tr>";
+                $sn++;
+            }
+        } else {
+            echo "<tr><td colspan='4'>No matching records found</td></tr>";
+        }
+        ?>
+        </tbody>
+    </table>
 </div>
+
+                        </div>
+                    </div>
+
+                </div>
 </div>
-<?php
+
+                <!-- /.container-fluid -->
+
+            <!-- End of Main Content -->
+
+        <!-- End of Content Wrapper -->
+
+    <!-- End of Page Wrapper -->
+
+    <?php
 include('includes/scripts.php');
 include('includes/footer.php');
 ?>
