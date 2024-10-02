@@ -216,8 +216,9 @@ include('includes/sidebar.php');
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
+                <a href="slider_insert.php"><button type='submit' name='submit' class='btn btn-primary mb-3 float-right'>Create New Slider</button></a>
+                <!-- Page Heading -->
+                     
                     <h1 class="h3 mb-2 text-gray-800">Slider Table</h1>
                     <p class="mb-4">Slider Data Tables where you can  &nbsp;<span class=" font-weight-bold text-primary">Edit</span> , <span class=" font-weight-bold text-primary">Upadte</span> , <span class=" font-weight-bold text-danger">Delete</span> &nbsp; your data.
                     <!-- DataTales Example -->

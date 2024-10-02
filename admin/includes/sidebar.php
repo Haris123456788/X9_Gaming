@@ -42,6 +42,9 @@
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Slider:</h6>
             <a class="collapse-item" href="slider_insert.php">Slider Details</a>
+            <h6 class="collapse-header">Slider(Edit,Update,Delete):</h6>
+            <a class="collapse-item" href="slider_table.php">Slider Table</a>
+
         </div>
     </div>
 </li>
