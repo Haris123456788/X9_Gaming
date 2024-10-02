@@ -216,7 +216,7 @@ include('includes/sidebar.php');
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                <a href="slider_insert.php"><button type='submit' name='submit' class='btn btn-primary mb-3 float-right'>Create New Slider</button></a>
+                <a href="slider_insert.php"><button type='submit' name='submit' class='btn btn-primary  float-right'>Create New Slider</button></a>
                 <!-- Page Heading -->
                      
                     <h1 class="h3 mb-2 text-gray-800">Slider Table</h1>
